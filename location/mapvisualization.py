@@ -2,20 +2,19 @@ import folium
 import pandas as pd
 import numpy as np
 
-# Sample data - Replace this with your actual data
-np.random.seed(42)
-location_data = pd.DataFrame({
-    "name": [f"Location {i}" for i in range(1, 6)],
-    "latitude": np.random.uniform(34, 35, 5),
-    "longitude": np.random.uniform(-119, -118, 5),
-    "data_value": np.random.rand(5) * 10  # Sample data values
+# Sample data for Chennai locations
+chennai_location_data = pd.DataFrame({
+    "name": ["Chennai Location 1", "Chennai Location 2", "Chennai Location 3"],
+    "latitude": [13.0827, 13.0674, 13.0624],  # Updated latitude coordinates for Chennai
+    "longitude": [80.2707, 80.2556, 80.2204],  # Updated longitude coordinates for Chennai
+    "data_value": [8.5, 6.2, 9.8]  # Example data values for visualization
 })
 
 # Create a base map centered at a specific location
-m = folium.Map(location=[np.mean(location_data["latitude"]), np.mean(location_data["longitude"])], zoom_start=12)
+m = folium.Map(location=[np.mean(chennai_location_data["latitude"]), np.mean(chennai_location_data["longitude"])], zoom_start=12)
 
-# Add CircleMarker for each location with darkening based on data
-for index, location in location_data.iterrows():
+# Add CircleMarker for each Chennai location with darkening based on data
+for index, location in chennai_location_data.iterrows():
     folium.CircleMarker(
         location=[location["latitude"], location["longitude"]],
         radius=10,
@@ -27,4 +26,4 @@ for index, location in location_data.iterrows():
     ).add_to(m)
 
 # Save the map as an HTML file
-m.save('map_with_data_visualization.html')
+m.save('map_with_chennai_data_visualization.html')

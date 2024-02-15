@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_3cbf60a8e89301da0db72cd9b5d2be25 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_3cbf60a8e89301da0db72cd9b5d2be25" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_3cbf60a8e89301da0db72cd9b5d2be25 = L.map(
+                "map_3cbf60a8e89301da0db72cd9b5d2be25",
+                {
+                    center: [13.070833333333335, 80.24889999999999],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 12,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_e5dbea5e955c72eccb8a9f62313cbd82 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_e5dbea5e955c72eccb8a9f62313cbd82.addTo(map_3cbf60a8e89301da0db72cd9b5d2be25);
+        
+    
+            var circle_marker_6ad287687616f0d13b23a722e2d82d22 = L.circleMarker(
+                [13.0827, 80.2707],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_3cbf60a8e89301da0db72cd9b5d2be25);
+        
+    
+        var popup_f2b80468d1f9937937089bd9613b1c38 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_28ece7ff3d89dc5f17e4f87e32b82c03 = $(`<div id="html_28ece7ff3d89dc5f17e4f87e32b82c03" style="width: 100.0%; height: 100.0%;">Chennai Location 1 - Data Value: 8.50</div>`)[0];
+                popup_f2b80468d1f9937937089bd9613b1c38.setContent(html_28ece7ff3d89dc5f17e4f87e32b82c03);
+            
+        
+
+        circle_marker_6ad287687616f0d13b23a722e2d82d22.bindPopup(popup_f2b80468d1f9937937089bd9613b1c38)
+        ;
+
+        
+    
+    
+            var circle_marker_dcdad8634e0933210c7798a839ff7288 = L.circleMarker(
+                [13.0674, 80.2556],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.62, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_3cbf60a8e89301da0db72cd9b5d2be25);
+        
+    
+        var popup_41b253e242092a8df49d98b1d5fd3b49 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ac61715b52b3aea62b140ebf057d1454 = $(`<div id="html_ac61715b52b3aea62b140ebf057d1454" style="width: 100.0%; height: 100.0%;">Chennai Location 2 - Data Value: 6.20</div>`)[0];
+                popup_41b253e242092a8df49d98b1d5fd3b49.setContent(html_ac61715b52b3aea62b140ebf057d1454);
+            
+        
+
+        circle_marker_dcdad8634e0933210c7798a839ff7288.bindPopup(popup_41b253e242092a8df49d98b1d5fd3b49)
+        ;
+
+        
+    
+    
+            var circle_marker_35c04aac0d756e2b1b7bccd014abe204 = L.circleMarker(
+                [13.0624, 80.2204],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9800000000000001, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_3cbf60a8e89301da0db72cd9b5d2be25);
+        
+    
+        var popup_d0b2f68d8cd0dca53a4ac24369452bc4 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a5f0af4f2720ea0338b8c1d5789cbec7 = $(`<div id="html_a5f0af4f2720ea0338b8c1d5789cbec7" style="width: 100.0%; height: 100.0%;">Chennai Location 3 - Data Value: 9.80</div>`)[0];
+                popup_d0b2f68d8cd0dca53a4ac24369452bc4.setContent(html_a5f0af4f2720ea0338b8c1d5789cbec7);
+            
+        
+
+        circle_marker_35c04aac0d756e2b1b7bccd014abe204.bindPopup(popup_d0b2f68d8cd0dca53a4ac24369452bc4)
+        ;
+
+        
+    
+</script>
+</html>

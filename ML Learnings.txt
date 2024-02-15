@@ -1,0 +1,11 @@
+supervised learning :
+
+regression
+classification
+breast cancer
+y data yes or no
+
+unsupervised :
+
+clustering the news data of panda
+genes
