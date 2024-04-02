@@ -1,0 +1,80 @@
+#!pip install pyyaml==5.1qa
+!pip show pyyaml  
+
+import tensorflow as tf
+tf.__version__#!nvidia-smi
+!nvcc --version #10.1
+!python --version # 3.7.6# or install like this
+!git clone https://github.com/facebookresearch/detectron2.git
+!python setup.py build develop# import some common detectron2 utilities
+from detectron2.engine import DefaultPredictor
+from detectron2.config import get_cfg
+from detectron2.utils.visualizer import Visualizer
+from detectron2.data import MetadataCatalog
+import cv2
+
+
+# get image
+im = cv2.imread("../testkeypoint.jpg")#Show the image with matplotlib
+#from IPython.display import Image
+#Image('../download.jpg')
+
+import matplotlib.pyplot as plt
+plt.figure(figsize=(15,7.5))
+plt.imshow(im[..., ::-1]) #bgr to rgb Create config
+cfg = get_cfg()
+cfg.merge_from_file("configs/COCO-Detection/faster_rcnn_R_101_FPN_3x.yaml")
+cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.5  # set threshold for this model
+cfg.MODEL.WEIGHTS = "detectron2://COCO-Detection/faster_rcnn_R_101_FPN_3x/137851257/model_final_f6e8b1.pkl"
+# Create predictor
+
+# If getting AssertionError: Torch not compiled with CUDA enabled detectron2. Then do the below given line
+cfg.MODEL.DEVICE = "cpu"
+
+predictor = DefaultPredictor(cfg)outputs = predictor(im)# look at the outputs. See https://detectron2.readthedocs.io/tutorials/models.html#model-output-format for specification
+print(outputs["instances"].pred_classes)
+print(outputs["instances"].pred_boxes)# We can use `Visualizer` to draw the predictions on the image.
+v = Visualizer(im[:, :, ::-1], MetadataCatalog.get(cfg.DATASETS.TRAIN[0]), scale=1.2)
+out = v.draw_instance_predictions(outputs["instances"].to("cpu"))
+
+
+def cv2_imshow(im):
+    im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
+    plt.figure(figsize=(25,7.5)), plt.imshow(im), plt.axis('off');
+plt.figure(figsize=(10,5))
+
+cv2_imshow(out.get_image()[:, :, ::-1])
+from detectron2 import model_zoo
+
+# Inference with a keypoint detection model
+cfg = get_cfg()   # get a fresh new config
+cfg.MODEL.DEVICE = "cpu"
+
+cfg.merge_from_file(model_zoo.get_config_file("COCO-Keypoints/keypoint_rcnn_R_50_FPN_3x.yaml"))
+cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.7  # set threshold for this model
+cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url("COCO-Keypoints/keypoint_rcnn_R_50_FPN_3x.yaml")
+
+im = cv2.imread("../testkeypoint.jpg")
+
+def cv2_imshow(im):
+    im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
+    plt.figure(figsize=(25,7.5)), plt.imshow(im), plt.axis('off');
+
+predictor = DefaultPredictor(cfg)
+outputs = predictor(im)
+
+v = Visualizer(im[:,:,::-1], MetadataCatalog.get(cfg.DATASETS.TRAIN[0]), scale=1.2)
+out = v.draw_instance_predictions(outputs["instances"].to("cpu"))
+cv2_imshow(out.get_image()[:, :, ::-1])cfg = get_cfg()
+cfg.MODEL.DEVICE = "cpu"
+
+# add project-specific config (e.g., TensorMask) here if you're not running a model in detectron2's core library
+cfg.merge_from_file(model_zoo.get_config_file("COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml"))
+
+cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.5  # set threshold for this model
+
+# Find a model from detectron2's model zoo. You can use the https://dl.fbaipublicfiles... url as well
+cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url("COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml")
+
+predictor = DefaultPredictor(cfg)
+outputs = predictor(im)
