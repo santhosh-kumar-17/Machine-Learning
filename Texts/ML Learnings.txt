@@ -1,11 +1,9 @@
-supervised learning :
+ML Learnings:
 
-regression
-classification
-breast cancer
-y data yes or no
+df.descibe()
+describing what and all is in the dataframe and it is giving min max sd mean etc
 
-unsupervised :
+df['Date'] = pd.to_datetime(df['Date'])
+to make date from being object to Date datatype
 
-clustering the news data of panda
-genes
+moving average(Indicator)

@@ -1,0 +1,298 @@
+# This Python 3 environment comes with many helpful analytics libraries installed
+# It is defined by the kaggle/python Docker image: https://github.com/kaggle/docker-python
+# For example, here's several helpful packages to load
+
+import numpy as np # linear algebra
+import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+
+# Input data files are available in the read-only "../input/" directory
+# For example, running this (by clicking run or pressing Shift+Enter) will list all files under the input directory
+
+import os
+for dirname, _, filenames in os.walk('/kaggle/input'):
+    for filename in filenames:
+        print(os.path.join(dirname, filename))
+
+# You can write up to 20GB to the current directory (/kaggle/working/) that gets preserved as output when you create a version using "Save & Run All" 
+# You can also write temporary files to /kaggle/temp/, but they won't be saved outside of the current session
+/kaggle/input/healthcare-dataset/healthcare_dataset.csv
+import pandas as pd
+df = pd.read_csv("/kaggle/input/healthcare-dataset/healthcare_dataset.csv")
+df
+Name	Age	Gender	Blood Type	Medical Condition	Date of Admission	Doctor	Hospital	Insurance Provider	Billing Amount	Room Number	Admission Type	Discharge Date	Medication	Test Results
+0	Tiffany Ramirez	81	Female	O-	Diabetes	2022-11-17	Patrick Parker	Wallace-Hamilton	Medicare	37490.983364	146	Elective	2022-12-01	Aspirin	Inconclusive
+1	Ruben Burns	35	Male	O+	Asthma	2023-06-01	Diane Jackson	Burke, Griffin and Cooper	UnitedHealthcare	47304.064845	404	Emergency	2023-06-15	Lipitor	Normal
+2	Chad Byrd	61	Male	B-	Obesity	2019-01-09	Paul Baker	Walton LLC	Medicare	36874.896997	292	Emergency	2019-02-08	Lipitor	Normal
+3	Antonio Frederick	49	Male	B-	Asthma	2020-05-02	Brian Chandler	Garcia Ltd	Medicare	23303.322092	480	Urgent	2020-05-03	Penicillin	Abnormal
+4	Mrs. Brandy Flowers	51	Male	O-	Arthritis	2021-07-09	Dustin Griffin	Jones, Brown and Murray	UnitedHealthcare	18086.344184	477	Urgent	2021-08-02	Paracetamol	Normal
+...	...	...	...	...	...	...	...	...	...	...	...	...	...	...	...
+9995	James Hood	83	Male	A+	Obesity	2022-07-29	Samuel Moody	Wood, Martin and Simmons	UnitedHealthcare	39606.840083	110	Elective	2022-08-02	Ibuprofen	Abnormal
+9996	Stephanie Evans	47	Female	AB+	Arthritis	2022-01-06	Christopher Yates	Nash-Krueger	Blue Cross	5995.717488	244	Emergency	2022-01-29	Ibuprofen	Normal
+9997	Christopher Martinez	54	Male	B-	Arthritis	2022-07-01	Robert Nicholson	Larson and Sons	Blue Cross	49559.202905	312	Elective	2022-07-15	Ibuprofen	Normal
+9998	Amanda Duke	84	Male	A+	Arthritis	2020-02-06	Jamie Lewis	Wilson-Lyons	UnitedHealthcare	25236.344761	420	Urgent	2020-02-26	Penicillin	Normal
+9999	Eric King	20	Male	B-	Arthritis	2023-03-22	Tasha Avila	Torres, Young and Stewart	Aetna	37223.965865	290	Emergency	2023-04-15	Penicillin	Abnormal
+10000 rows × 15 columns
+
+df.info()
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 10000 entries, 0 to 9999
+Data columns (total 15 columns):
+ #   Column              Non-Null Count  Dtype  
+---  ------              --------------  -----  
+ 0   Name                10000 non-null  object 
+ 1   Age                 10000 non-null  int64  
+ 2   Gender              10000 non-null  object 
+ 3   Blood Type          10000 non-null  object 
+ 4   Medical Condition   10000 non-null  object 
+ 5   Date of Admission   10000 non-null  object 
+ 6   Doctor              10000 non-null  object 
+ 7   Hospital            10000 non-null  object 
+ 8   Insurance Provider  10000 non-null  object 
+ 9   Billing Amount      10000 non-null  float64
+ 10  Room Number         10000 non-null  int64  
+ 11  Admission Type      10000 non-null  object 
+ 12  Discharge Date      10000 non-null  object 
+ 13  Medication          10000 non-null  object 
+ 14  Test Results        10000 non-null  object 
+dtypes: float64(1), int64(2), object(12)
+memory usage: 1.1+ MB
+Exploratory Data Analysis
+for col in df.columns:
+    print(f"{col} Data has ", df[col].nunique(), " types. \n")
+Name Data has  9378  types. 
+
+Age Data has  68  types. 
+
+Gender Data has  2  types. 
+
+Blood Type Data has  8  types. 
+
+Medical Condition Data has  6  types. 
+
+Date of Admission Data has  1815  types. 
+
+Doctor Data has  9416  types. 
+
+Hospital Data has  8639  types. 
+
+Insurance Provider Data has  5  types. 
+
+Billing Amount Data has  10000  types. 
+
+Room Number Data has  400  types. 
+
+Admission Type Data has  3  types. 
+
+Discharge Date Data has  1834  types. 
+
+Medication Data has  5  types. 
+
+Test Results Data has  3  types. 
+
+for col in df.columns:
+    print(f"{col} Data has :", df[col].unique(), "\n")
+Name Data has : ['Tiffany Ramirez' 'Ruben Burns' 'Chad Byrd' ... 'Christopher Martinez'
+ 'Amanda Duke' 'Eric King'] 
+
+Age Data has : [81 35 61 49 51 41 82 55 33 39 45 23 85 72 65 32 64 66 80 79 54 26 70 74
+ 56 37 78 83 30 19 46 48 34 84 47 60 57 21 27 68 31 42 71 38 28 43 69 73
+ 67 44 20 59 76 40 36 29 53 77 24 75 25 62 52 50 22 63 58 18] 
+
+Gender Data has : ['Female' 'Male'] 
+
+Blood Type Data has : ['O-' 'O+' 'B-' 'AB+' 'A+' 'AB-' 'A-' 'B+'] 
+
+Medical Condition Data has : ['Diabetes' 'Asthma' 'Obesity' 'Arthritis' 'Hypertension' 'Cancer'] 
+
+Date of Admission Data has : ['2022-11-17' '2023-06-01' '2019-01-09' ... '2020-07-03' '2022-02-19'
+ '2022-07-29'] 
+
+Doctor Data has : ['Patrick Parker' 'Diane Jackson' 'Paul Baker' ... 'Robert Nicholson'
+ 'Jamie Lewis' 'Tasha Avila'] 
+
+Hospital Data has : ['Wallace-Hamilton' 'Burke, Griffin and Cooper' 'Walton LLC' ...
+ 'Nash-Krueger' 'Wilson-Lyons' 'Torres, Young and Stewart'] 
+
+Insurance Provider Data has : ['Medicare' 'UnitedHealthcare' 'Aetna' 'Cigna' 'Blue Cross'] 
+
+Billing Amount Data has : [37490.98336353 47304.06484548 36874.89699661 ... 49559.20290467
+ 25236.34476098 37223.96586473] 
+
+Room Number Data has : [146 404 292 480 477 180 161 384 215 310 306 126 444 492 120 315 475 125
+ 366 238 364 130 293 379 298 392 162 456 197 247 228 137 192 258 219 414
+ 110 465 469 182 119 388 412 359 186 437 132 271 361 303 317 439 153 438
+ 380 194 199 301 223 410 205 134 407 188 213 405 358 147 115 436 263 493
+ 460 356 142 139 482 141 397 347 245 143 108 268 176 462 484 329 335 201
+ 309 389 217 299 275 181 401 214 267 211 184 140 416 179 289 350 104 220
+ 464 419 445 398 336 413 145 148 432 430 406 295 175 409 424 168 136 459
+ 261 257 170 451 372 202 394 264 279 260 499 452 365 340 360 290 103 187
+ 378 334 470 252 450 106 259 344 489 276 155 455 425 400 127 333 443 129
+ 164 486 440 265 193 222 488 472 391 230 322 272 154 236 375 221 244 287
+ 243 370 237 234 458 226 478 204 196 294 297 280 374 216 135 225 152 270
+ 454 442 189 487 485 218 111 105 362 497 420 483 288 133 114 253 286 109
+ 390 207 411 324 357 283 471 274 353 311 490 368 284 242 209 433 116 278
+ 249 498 240 107 383 338 262 496 447 246 305 479 363 239 158 369 229 403
+ 349 476 144 330 291 325 224 386 428 174 101 382 435 235 474 467 118 206
+ 233 269 422 441 320 173 277 423 112 304 300 227 121 461 302 266 417 231
+ 171 150 323 457 449 418 151 195 332 183 312 172 285 250 494 354 210 308
+ 385 124 190 163 339 203 355 500 212 415 254 381 131 191 178 326 138 241
+ 481 313 156 402 248 331 341 495 208 377 343 427 296 165 200 123 468 273
+ 396 351 395 319 393 491 232 376 473 185 429 453 348 337 255 434 463 102
+ 316 345 399 314 408 159 251 157 169 387 448 431 149 282 198 307 281 373
+ 371 426 177 352 446 421 321 256 167 122 342 113 466 346 128 160 117 328
+ 367 318 327 166] 
+
+Admission Type Data has : ['Elective' 'Emergency' 'Urgent'] 
+
+Discharge Date Data has : ['2022-12-01' '2023-06-15' '2019-02-08' ... '2023-01-02' '2019-05-23'
+ '2023-11-27'] 
+
+Medication Data has : ['Aspirin' 'Lipitor' 'Penicillin' 'Paracetamol' 'Ibuprofen'] 
+
+Test Results Data has : ['Inconclusive' 'Normal' 'Abnormal'] 
+
+df[["Admission Year", "Admission Month", "Admission Day"]] = df["Date of Admission"].str.split("-", expand = True)
+df[["Discharge Year", "Discharge Month", "Discharge Day"]] = df["Discharge Date"].str.split("-", expand = True)
+df.drop(["Date of Admission", "Discharge Date"], axis = 1, inplace = True)
+df.drop(["Admission Day", "Discharge Day"], axis = 1, inplace = True)
+df.head()
+Name	Age	Gender	Blood Type	Medical Condition	Doctor	Hospital	Insurance Provider	Billing Amount	Room Number	Admission Type	Medication	Test Results	Admission Year	Admission Month	Discharge Year	Discharge Month
+0	Tiffany Ramirez	81	Female	O-	Diabetes	Patrick Parker	Wallace-Hamilton	Medicare	37490.983364	146	Elective	Aspirin	Inconclusive	2022	11	2022	12
+1	Ruben Burns	35	Male	O+	Asthma	Diane Jackson	Burke, Griffin and Cooper	UnitedHealthcare	47304.064845	404	Emergency	Lipitor	Normal	2023	06	2023	06
+2	Chad Byrd	61	Male	B-	Obesity	Paul Baker	Walton LLC	Medicare	36874.896997	292	Emergency	Lipitor	Normal	2019	01	2019	02
+3	Antonio Frederick	49	Male	B-	Asthma	Brian Chandler	Garcia Ltd	Medicare	23303.322092	480	Urgent	Penicillin	Abnormal	2020	05	2020	05
+4	Mrs. Brandy Flowers	51	Male	O-	Arthritis	Dustin Griffin	Jones, Brown and Murray	UnitedHealthcare	18086.344184	477	Urgent	Paracetamol	Normal	2021	07	2021	08
+df["Admission Year"] = df["Admission Year"].astype("float")
+df["Admission Month"] = df["Admission Month"].astype("float")
+df["Discharge Year"] = df["Discharge Year"].astype("float")
+df["Discharge Month"] = df["Discharge Month"].astype("float")
+df["Billing Amount"] = df["Billing Amount"].round(-3)
+df.head()
+Name	Age	Gender	Blood Type	Medical Condition	Doctor	Hospital	Insurance Provider	Billing Amount	Room Number	Admission Type	Medication	Test Results	Admission Year	Admission Month	Discharge Year	Discharge Month
+0	Tiffany Ramirez	81	Female	O-	Diabetes	Patrick Parker	Wallace-Hamilton	Medicare	37000.0	146	Elective	Aspirin	Inconclusive	2022.0	11.0	2022.0	12.0
+1	Ruben Burns	35	Male	O+	Asthma	Diane Jackson	Burke, Griffin and Cooper	UnitedHealthcare	47000.0	404	Emergency	Lipitor	Normal	2023.0	6.0	2023.0	6.0
+2	Chad Byrd	61	Male	B-	Obesity	Paul Baker	Walton LLC	Medicare	37000.0	292	Emergency	Lipitor	Normal	2019.0	1.0	2019.0	2.0
+3	Antonio Frederick	49	Male	B-	Asthma	Brian Chandler	Garcia Ltd	Medicare	23000.0	480	Urgent	Penicillin	Abnormal	2020.0	5.0	2020.0	5.0
+4	Mrs. Brandy Flowers	51	Male	O-	Arthritis	Dustin Griffin	Jones, Brown and Murray	UnitedHealthcare	18000.0	477	Urgent	Paracetamol	Normal	2021.0	7.0	2021.0	8.0
+df.drop(["Name", "Doctor", "Hospital", "Room Number"], axis = 1, inplace = True)
+df.head()
+Age	Gender	Blood Type	Medical Condition	Insurance Provider	Billing Amount	Admission Type	Medication	Test Results	Admission Year	Admission Month	Discharge Year	Discharge Month
+0	81	Female	O-	Diabetes	Medicare	37000.0	Elective	Aspirin	Inconclusive	2022.0	11.0	2022.0	12.0
+1	35	Male	O+	Asthma	UnitedHealthcare	47000.0	Emergency	Lipitor	Normal	2023.0	6.0	2023.0	6.0
+2	61	Male	B-	Obesity	Medicare	37000.0	Emergency	Lipitor	Normal	2019.0	1.0	2019.0	2.0
+3	49	Male	B-	Asthma	Medicare	23000.0	Urgent	Penicillin	Abnormal	2020.0	5.0	2020.0	5.0
+4	51	Male	O-	Arthritis	UnitedHealthcare	18000.0	Urgent	Paracetamol	Normal	2021.0	7.0	2021.0	8.0
+import warnings
+warnings.filterwarnings('ignore')
+import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.express as px
+fig = px.sunburst(df, path = ["Gender"])
+fig.update_traces(textinfo = "label + percent parent")
+fig.update_layout(title_text = "Patient's Gender",
+                 titlefont = {'size' : 20, 'family' : 'Serif'},
+                 width = 500, height = 500)
+fig.show()
+feats = ["Age", "Gender", "Blood Type", "Medical Condition", "Insurance Provider", "Admission Type", "Medication", "Test Results"]
+for i, col in enumerate(feats, 1):
+    fig = px.sunburst(df, path = [col])
+    fig.update_traces(textinfo = "label + percent parent")
+    fig.update_layout(title_text = f"Patient's {col}",
+                     titlefont = {'size' : 20, 'family' : 'Serif'},
+                     width = 600, height = 600)
+    fig.show()
+fig = px.sunburst(df, path = ["Test Results", "Medication"])
+fig.update_traces(textinfo = "label + percent parent")
+fig.update_layout(title_text = "Test Results by Medication",
+                 titlefont = {'size' : 20, 'family' : 'Serif'},
+                 width = 600, height = 600)
+fig.show()
+fig = px.sunburst(df, path = ["Admission Type", "Medical Condition"])
+fig.update_traces(textinfo = "label + percent parent")
+fig.update_layout(title_text = "Admission Type by Medical Condition",
+                 titlefont = {'size' : 20, 'family' : 'Serif'},
+                 height = 600, width = 600)
+fig = px.sunburst(df, path = ["Gender", "Medical Condition", "Medication"])
+fig.update_traces(textinfo = "label + percent parent")
+fig.update_layout(title_text = "Patient's Status",
+                 titlefont = {'size' : 20, 'family' : 'Serif'},
+                 height = 600, width = 600)
+fig.show()
+Preprocessing
+# LabelEnocder
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+cat_cols = []
+for col in df.columns:
+    if df[col].dtypes == "object":
+        cat_cols.append(col)
+for col in cat_cols:
+    df[col] = le.fit_transform(df[col])
+df.head()
+Age	Gender	Blood Type	Medical Condition	Insurance Provider	Billing Amount	Admission Type	Medication	Test Results	Admission Year	Admission Month	Discharge Year	Discharge Month
+0	81	0	7	3	3	37000.0	0	0	1	2022.0	11.0	2022.0	12.0
+1	35	1	6	1	4	47000.0	1	2	2	2023.0	6.0	2023.0	6.0
+2	61	1	5	5	3	37000.0	1	2	2	2019.0	1.0	2019.0	2.0
+3	49	1	5	1	3	23000.0	2	4	0	2020.0	5.0	2020.0	5.0
+4	51	1	7	0	4	18000.0	2	3	2	2021.0	7.0	2021.0	8.0
+# Skewness of all data excluding name
+plt.figure(figsize = (10, 30))
+for i, col in enumerate(df.columns, 1):
+    plt.subplot(7, 2, i)
+    skewness = df[col].skew()
+    sns.distplot(df[col], label = "Skew = %.3f" %(skewness))
+    plt.title(f"Skewness of {col} Data")
+    plt.legend(loc = "best")
+    plt.xticks(rotation = 90)
+    plt.plot()
+
+There are not many oultiers.
+It is not necessary to remove outliers.
+# Relocate "Test Results" to end column
+df1 = df.copy()
+df.drop("Test Results", axis = 1, inplace = True)
+df = pd.concat([df, df1["Test Results"]], axis = 1)
+df.head()
+Age	Gender	Blood Type	Medical Condition	Insurance Provider	Billing Amount	Admission Type	Medication	Admission Year	Admission Month	Discharge Year	Discharge Month	Test Results
+0	81	0	7	3	3	37000.0	0	0	2022.0	11.0	2022.0	12.0	1
+1	35	1	6	1	4	47000.0	1	2	2023.0	6.0	2023.0	6.0	2
+2	61	1	5	5	3	37000.0	1	2	2019.0	1.0	2019.0	2.0	2
+3	49	1	5	1	3	23000.0	2	4	2020.0	5.0	2020.0	5.0	0
+4	51	1	7	0	4	18000.0	2	3	2021.0	7.0	2021.0	8.0	2
+# split Dataset with Train/Test
+X = df.iloc[:, :-1]
+y = df.iloc[:, -1]
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
+Machine Learning - Prediction
+# Use RandomForestRegressor
+from sklearn.ensemble import RandomForestRegressor
+rfr = RandomForestRegressor()
+rfr.fit(X_train, y_train)
+
+RandomForestRegressor
+RandomForestRegressor()
+test = [[40, 1, 5, 3, 4, 35000, 1, 2, 2021, 5, 2021, 6]]
+# Age : 40, Gender : Male(1), Blood Type : O-(5), Medical Condition : Diabetes(3)
+# Insurance Provider : UnitedHealthcare(4), Billing Amount : 35000 
+# Admission type : Emergency(1), Medication : Lipitor(2)
+y_rfr = rfr.predict(test).round()
+y_rfr
+array([1.])
+Test Results : 1(inconclusive)
+# Use GradientBoostingClassifier
+from sklearn.ensemble import GradientBoostingClassifier
+gbc = GradientBoostingClassifier()
+gbc.fit(X_train, y_train)
+
+GradientBoostingClassifier
+GradientBoostingClassifier()
+test2 = [[28, 0, 2, 1, 4, 25000, 0, 1, 2021, 5, 2021, 6]]
+# Age : 28, Gender : Female(0), Blood Type : AB+(2), Medical Condition : Asthma(1)
+# Insurance Provider : UnitedHealthcare(4), Billing Amount : 25000 
+# Admission type : Elective(0), Medication : lbuprofen(1)
+y_gbc = gbc.predict(test2).round()
+y_gbc
+array([1])
+Test Results : 1(Inconclusive)
+ 
