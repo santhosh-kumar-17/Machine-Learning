@@ -1,0 +1,19 @@
+Arima RMSE: 0.10427292719290746MAPE: 0.16264595204321428 
+LSTM RMSE: 0.10211270831365196 MAPE: 0.15758297555397976
+
+MVA
+Root Mean Squared Error (RMSE): 7.924198929776981
+Mean Absolute Percentage Error (MAPE): 2.6206151281738923
+
+EMA
+Root Mean Squared Error (RMSE) for EMA: 19.95304063071644
+Mean Absolute Percentage Error (MAPE) for EMA: 6.973173232485938
+
+
+RSI
+Root Mean Squared Error (RMSE) for RSI: 173.15010850890195
+Mean Absolute Percentage Error (MAPE) for RSI: 77.89445587514905
+
+GBM
+Root Mean Squared Error (RMSE) for GBM: 11.515944318403399
+Mean Absolute Percentage Error (MAPE) for GBM: 2.337793579875704

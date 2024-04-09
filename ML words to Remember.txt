@@ -1,0 +1,6 @@
+ML words to Remember:
+
+
+R-squared, Mean Squared Error (MSE), or Root Mean Squared Error (RMSE)
+
+Dimensions  - columns
