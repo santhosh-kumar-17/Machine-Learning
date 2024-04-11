@@ -1,6 +1,8 @@
 ML words to Remember:
 
 
-R-squared, Mean Squared Error (MSE), or Root Mean Squared Error (RMSE)
+1.R-squared, Mean Squared Error (MSE), or Root Mean Squared Error (RMSE)
 
-Dimensions  - columns
+2.Dimensions  - columns
+
+3.

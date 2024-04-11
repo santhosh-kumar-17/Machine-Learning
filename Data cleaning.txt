@@ -1,0 +1,50 @@
+# Check for missing values in each column
+print(df.isnull().sum())
+
+# Drop rows with missing values
+df.dropna(inplace=True)
+
+# Fill missing values with a specific value
+df.fillna(value, inplace=True)
+df.isna().sum()
+
+# Remove duplicate rows
+df.drop_duplicates(inplace=True)
+
+# Convert data types of columns
+df['column_name'] = df['column_name'].astype('desired_data_type')
+
+# Convert text data to lowercase
+df['text_column'] = df['text_column'].str.lower()
+
+# Remove leading/trailing whitespaces
+df['text_column'] = df['text_column'].str.strip()
+
+# Define a function to identify outliers using z-score or other methods
+def detect_outliers(df, threshold=3):
+    # Your outlier detection logic here
+    return outliers_indices
+
+# Remove outliers from numerical columns
+outliers_indices = detect_outliers(df)
+df = df.drop(outliers_indices)
+
+# Replace inconsistent values with correct ones
+df['column_name'].replace({'incorrect_value': 'correct_value'}, inplace=True)
+
+# Create new features based on existing ones
+df['new_feature'] = df['feature1'] + df['feature2']
+
+
+def detect_outliers(df, threshold=3):
+    outlier_indices = []
+    for col in df.columns:
+        mean = df[col].mean()
+        std = df[col].std()
+        outliers = (df[col] - mean).abs() > threshold * std
+        outlier_indices.extend(outliers[outliers].index)
+    return list(set(outlier_indices))
+
+outlier_indices = detect_outliers(df.drop(columns='Volume')) 
+
+outlier detection for volume  
