@@ -1,0 +1,36 @@
+default code
+
+df = pd.read_csv('nifty_dataCE.csv')
+
+df.set_index('lasttradetime', inplace=True)
+scaler = MinMaxScaler(feature_range=(0, 1))
+df_scaled = scaler.fit_transform(df)
+lookback_window = 5
+features = df.shape[1]
+def create_sequences(data, lookback_window):
+  X, y = [], []
+  for i in range(len(data) - lookback_window - 1):
+    X.append(data[i:(i + lookback_window), :])
+    y.append(data[i + lookback_window, :])
+  return np.array(X), np.array(y)
+
+X, y = create_sequences(df_scaled, lookback_window)
+X_train, y_train = X, y  # Replace with train/validation split if desired
+model = Sequential()
+model.add(LSTM(units=50, return_sequences=True, input_shape=(lookback_window, features)))
+model.add(LSTM(units=50))
+model.add(Dense(units=features))
+model.compile(loss='mean_squared_error', optimizer='adam')
+model.fit(X_train, y_train, epochs=5, batch_size=32)
+number_of_predictions = 50
+forecasted_values = []
+last_sequence = X_train[-1]
+for _ in range(number_of_predictions):
+  next_data_point = model.predict(np.expand_dims(last_sequence, axis=0))
+  next_data_point_original = scaler.inverse_transform(next_data_point)
+  forecasted_values.append(next_data_point_original.flatten())
+  last_sequence = np.append(last_sequence[1:], next_data_point, axis=0)
+forecast_df = pd.DataFrame(forecasted_values, columns=df.columns)
+print("Forecasted values for the next", number_of_predictions, "time steps:")
+print(forecast_df)
+print(forecast_df['close'].max(),forecast_df['close'].min())
