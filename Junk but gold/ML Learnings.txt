@@ -1,6 +1,6 @@
 ML Learnings:
 
-df.descibe()
+df.describe()
 describing what and all is in the dataframe and it is giving min max sd mean etc
 
 df['Date'] = pd.to_datetime(df['Date'])

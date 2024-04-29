@@ -5,4 +5,6 @@ ML words to Remember:
 
 2.Dimensions  - columns
 
-3.
+3.Hypothesis testing . to test whether the new output got better or just like the same old output . if there is significant change like 0.05 then it leads to higher conversion
+0.05 it is the significance level
+4.
