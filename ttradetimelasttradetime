@@ -1,0 +1,40 @@
+[33mf36bf90[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{0}: commit: wrote by me till the date index
+[33m0c2bcd3[m HEAD@{1}: reset: moving to 0c2bcd3
+[33m2fec218[m HEAD@{2}: reset: moving to HEAD~1
+[33m6931116[m HEAD@{3}: commit: Add large file using Git LFS
+[33m2fec218[m HEAD@{4}: commit: till the working concept of threading
+[33m0c2bcd3[m HEAD@{5}: commit: added till everything is working
+[33mb965f19[m HEAD@{6}: commit: till added leaning rate
+[33m22d60a8[m HEAD@{7}: commit: organised File
+[33maf9abd9[m HEAD@{8}: commit: Assume this as Correct version
+[33m2a52b97[m HEAD@{9}: commit: take this as correct version
+[33m92869b3[m HEAD@{10}: reset: moving to HEAD~1
+[33mdea6ba9[m HEAD@{11}: reset: moving to HEAD~3
+[33mbea485f[m HEAD@{12}: reset: moving to HEAD~3
+[33m06eb81e[m HEAD@{13}: reset: moving to 06eb81e
+[33md2e039b[m HEAD@{14}: reset: moving to HEAD~3
+[33mdea6ba9[m HEAD@{15}: reset: moving to HEAD~3
+[33mbea485f[m HEAD@{16}: reset: moving to HEAD~3
+[33m06eb81e[m HEAD@{17}: reset: moving to HEAD
+[33m06eb81e[m HEAD@{18}: reset: moving to HEAD
+[33m06eb81e[m HEAD@{19}: commit: commited
+[33m9ccf891[m HEAD@{20}: commit: Remove dataset .csv files from LFS tracking
+[33m4327524[m HEAD@{21}: commit: commit
+[33mbea485f[m HEAD@{22}: commit: Track train.csv using Git LFS
+[33m1843321[m HEAD@{23}: commit: added all with gitignoew
+[33mc775a27[m HEAD@{24}: commit: added git ignore
+[33mdea6ba9[m HEAD@{25}: commit: Cleaning process of Directories
+[33m92869b3[m HEAD@{26}: commit: added with the prediction with nse data
+[33m542b9f8[m HEAD@{27}: commit: till the idea of adding more feature
+[33md2e039b[m HEAD@{28}: commit: pushing add till 13-04
+[33mf84004d[m HEAD@{29}: commit: daily commit of the work done
+[33m3220cca[m HEAD@{30}: commit: casual commit
+[33mfb7d753[m HEAD@{31}: commit: added all the files
+[33m3c19f02[m HEAD@{32}: commit: till Lstm prediction
+[33m61923e6[m HEAD@{33}: commit: added the ipynb files
+[33me9fb95e[m HEAD@{34}: commit: Organised the repo
+[33mf53c681[m HEAD@{35}: pull: Fast-forward
+[33m2d4aef4[m HEAD@{36}: commit: adding all the ML files till date includes some useless files
+[33m9b5687f[m HEAD@{37}: commit: test commit
+[33m55f2e0a[m HEAD@{38}: Branch: renamed refs/heads/master to refs/heads/main
+[33m55f2e0a[m HEAD@{40}: commit (initial): all the commits till date
