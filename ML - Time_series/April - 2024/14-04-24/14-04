@@ -1,5 +1,3 @@
-default code
-
 df = pd.read_csv('nifty_dataCE.csv')
 
 df.set_index('lasttradetime', inplace=True)
