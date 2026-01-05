@@ -9,6 +9,9 @@
 *.model
 *.onnx
 
+# YOLO weights
+yolov3.weights
+
 # ===============================
 # Virtual environments (anywhere)
 # ===============================
