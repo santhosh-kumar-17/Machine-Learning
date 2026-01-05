@@ -5,3 +5,6 @@
 **/*.gguf
 **/*.model
 **/*.onnx
+# Virtual environments
+.venv/
+rag_env/
