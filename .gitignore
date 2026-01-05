@@ -1,10 +1,23 @@
+# ===============================
+# Model artifacts (anywhere)
+# ===============================
 *.pt
 *.pth
 *.bin
 *.safetensors
-**/*.gguf
-**/*.model
-**/*.onnx
-# Virtual environments
+*.gguf
+*.model
+*.onnx
+
+# ===============================
+# Virtual environments (anywhere)
+# ===============================
 .venv/
+venv/
+env/
 rag_env/
+
+**/.venv/
+**/venv/
+**/env/
+**/rag_env/
